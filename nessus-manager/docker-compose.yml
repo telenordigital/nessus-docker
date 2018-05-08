@@ -1,0 +1,16 @@
+# -- EXAMPLE --
+## To be used when actually deployed with Terraform.
+
+version: '3.4'
+
+services:
+  nessus-manager:
+    image: ${ecr_url}:${docker_name}-${docker_tag}
+    hostname: nessus-manager
+    restart: always
+    ports:
+      - 443:8834
+    volumes:
+      - "/mnt/secrets:/mnt/secrets"
+    logging:
+      driver: journald
